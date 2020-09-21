@@ -27,9 +27,7 @@ namespace BuscaProfundidade
 	 ///Metodo auxiliar da busca em profundidade.
 	 // u
 	// tempo
-	// cor
-	// @return
-	 
+	// cor	 
 		private int visitaDfs(int u, int tempo, int[] cor)
 		{
 
