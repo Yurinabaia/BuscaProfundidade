@@ -28,12 +28,7 @@ namespace BuscaProfundidade
 	 ///Metodo auxiliar da busca em profundidade.
 	 // u
 	// tempo
-<<<<<<< HEAD
-	// cor
-	 
-=======
-	// cor	 
->>>>>>> e30787f774e1cce367f19767d7a20ad51b5a52af
+
 		private int visitaDfs(int u, int tempo, int[] cor)
 		{
 			Console.WriteLine("Tempo " + tempo);
