@@ -47,11 +47,11 @@ namespace BuscaProfundidade
 		public void criarGrafo()
 		{
 			addArestas(0, 1, 3);//A -> B, A ->D
-			addArestas(1, 4);
-			addArestas(2, 4, 5);
-			addArestas(3, 1);
-			addArestas(4, 3);
-			addArestas(5, 5);
+			addArestas(1, 2, 4);
+			addArestas(2, 4);
+			addArestas(3, 5);
+			addArestas(4, 0);
+			addArestas(4, 5);
 			IMPRIMIR();
 		}
 

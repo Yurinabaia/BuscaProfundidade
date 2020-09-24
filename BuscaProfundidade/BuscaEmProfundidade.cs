@@ -12,6 +12,7 @@ namespace BuscaProfundidade
 		private int[] d, t, antecessor;
 		private String saida;
 		private Grafo grafo;
+		private int TEMPO = 0;
 
 		public BuscaEmProfundidade(Grafo g)
 		{
@@ -28,12 +29,12 @@ namespace BuscaProfundidade
 	 // u
 	// tempo
 	// cor
-	// @return
 	 
 		private int visitaDfs(int u, int tempo, int[] cor)
 		{
+			Console.WriteLine("Tempo " + tempo);
 
-			Console.WriteLine(" Visitando o vertice: " + LETRA(u));
+			Console.WriteLine(" Visitando o vertice: " + LETRA(u) + " == " + u);
 			saida += u + ", ";  //Armazena a ordem de visita dos vertices em uma string
 			cor[u] = cinza;
 			this.d[u] = ++tempo;
@@ -49,7 +50,7 @@ namespace BuscaProfundidade
 					}
 				}
 			}
-
+			Console.WriteLine("MAIS " +tempo);
 			cor[u] = preto;
 			this.t[u] = ++tempo;
 			return tempo;
