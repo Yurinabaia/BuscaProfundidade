@@ -12,7 +12,8 @@ namespace BuscaProfundidade
 		private int[] d, t, antecessor;
 		private String saida;
 		private Grafo grafo;
-		private int TEMPO = 0;
+		private int contador = 0;
+		private List<string> asd = new List<string>();
 
 		public BuscaEmProfundidade(Grafo g)
 		{
@@ -31,25 +32,58 @@ namespace BuscaProfundidade
 
 		private int visitaDfs(int u, int tempo, int[] cor)
 		{
-			Console.WriteLine("Tempo " + tempo);
+			//Console.WriteLine("Tempo " + tempo);
 
-			Console.WriteLine(" Visitando o vertice: " + LETRA(u) + " == " + u);
-			saida += u + ", ";  //Armazena a ordem de visita dos vertices em uma string
+				saida += u + ", ";  //Armazena a ordem de visita dos vertices em uma string
 			cor[u] = cinza;
+			string cl = "";
 			this.d[u] = ++tempo;
+
 			if (grafo.vertices[u].Count != 0)
 			{
+				//Console.WriteLine(" Visitando o vertice: " + grafo.NOMESVERTICE[u] + " == " + (u));
 				List<int> listaAdj = grafo.vertices[u];
 				foreach (int v in listaAdj)
 				{
+
+					if (CORES(cor[u]) == "Cinza" && CORES(cor[v]) == "Preto")
+					{
+						if (asd.Exists(a => a == LETRA(u)))
+						{
+							cl = classificacaoAresta(CORES(cor[v]), CORES(cor[u]));
+							Console.WriteLine("Coluna " + u + " --> " + v + " COR " + CORES(cor[v]) + " TEMPO " + (tempo + 1) + " CLASSIFICAÇÃO " + cl);
+						}
+						else
+						{
+							asd.Add(LETRA(u));
+							cl = classificacaoAresta(CORES(cor[u]), CORES(cor[v]));
+							Console.WriteLine("Coluna " + u + " --> " + v + " COR " + CORES(cor[v]) + " TEMPO " + (tempo + 1) + " CLASSIFICAÇÃO " + cl);
+						}
+						
+					}
+					else
+					{
+
+						cl = classificacaoAresta(CORES(cor[u]), CORES(cor[v]));
+						Console.WriteLine("Coluna " + u + " --> " + v + " COR " + CORES(cor[v]) + " TEMPO " + (tempo + 1) + " CLASSIFICAÇÃO " + cl);
+					}
+
+					if (!asd.Exists(a => a == LETRA(u)))
+					{
+						asd.Add(LETRA(u));
+					}
 					if (cor[v] == branco)
 					{
 						this.antecessor[v] = u;
 						tempo = this.visitaDfs(v, tempo, cor);
+
 					}
+					
 				}
 			}
-			Console.WriteLine("MAIS " +tempo);
+
+
+	
 			cor[u] = preto;
 			this.t[u] = ++tempo;
 			return tempo;
@@ -111,6 +145,19 @@ namespace BuscaProfundidade
 				cor = "Preto";
 
 			return cor;
+		}
+		public static string classificacaoAresta(string a, string b) 
+		{
+			string saidas = "";
+			if (a == "Cinza" && b == "Branco")
+				saidas = "Arvore";
+			else if (a == "Cinza" && b == "Cinza")
+				saidas = "Retorno";
+			else if (a == "Cinza" && b == "Preto")
+				saidas = "Cruzamento";
+			else if(a == "Preto" && b == "Cinza")
+				saidas = "Avanço";
+			return saidas;
 		}
 	}
 }

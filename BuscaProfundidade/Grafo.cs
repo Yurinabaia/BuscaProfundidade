@@ -9,6 +9,7 @@ namespace BuscaProfundidade
 	public class Grafo
 	{
 		public List<int>[] vertices = new List<int>[10];
+		public List<string> NOMESVERTICE = new List<string>();
 		public int numeroVertices { get; set; }
 		public Grafo(int numVertices)
 		{
@@ -36,13 +37,21 @@ namespace BuscaProfundidade
 					Console.WriteLine("VERTICE " + LETRA(a) + " = " + a);
 					foreach (var s in vertices[a])
 					{
+						NOMESVERTICE.Add(LETRA(a) + "-" + LETRA(s));
 						Console.WriteLine("---> " + LETRA(s) + " = " + s);
 					}
 					Console.WriteLine("\n\n\n\n");
 					a++;
 				}
 			}
+
+			foreach (var item in NOMESVERTICE)
+			{
+				Console.WriteLine(item);
+			}
 		}
+
+
 		//Cria o Digrafo 'G'
 		public void criarGrafo()
 		{
