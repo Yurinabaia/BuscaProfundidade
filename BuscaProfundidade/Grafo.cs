@@ -55,12 +55,16 @@ namespace BuscaProfundidade
 		//Cria o Digrafo 'G'
 		public void criarGrafo()
 		{
-			addArestas(0, 1, 3);//A -> B, A ->D
-			addArestas(1, 2, 4);
+			addArestas(0, 1);//A -> B, A ->D
+			addArestas(0, 3);//A -> B, A ->D
+
+			addArestas(1, 2);
+			addArestas(1, 4);
 			addArestas(2, 4);
 			addArestas(3, 5);
-			addArestas(4, 0);
-			addArestas(4, 5);
+			addArestas(4,0);
+			addArestas(4,5);
+
 			IMPRIMIR();
 		}
 

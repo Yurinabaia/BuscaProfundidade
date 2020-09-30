@@ -12,7 +12,6 @@ namespace BuscaProfundidade
 		private int[] d, t, antecessor;
 		private String saida;
 		private Grafo grafo;
-		private int contador = 0;
 		private List<string> asd = new List<string>();
 
 		public BuscaEmProfundidade(Grafo g)
@@ -43,9 +42,10 @@ namespace BuscaProfundidade
 			{
 				//Console.WriteLine(" Visitando o vertice: " + grafo.NOMESVERTICE[u] + " == " + (u));
 				List<int> listaAdj = grafo.vertices[u];
+				Console.WriteLine("\nTempo do vertice " + u + " = " + tempo);
+
 				foreach (int v in listaAdj)
 				{
-
 					if (CORES(cor[u]) == "Cinza" && CORES(cor[v]) == "Preto")
 					{
 						if (asd.Exists(a => a == LETRA(u)))
@@ -80,10 +80,12 @@ namespace BuscaProfundidade
 					}
 					
 				}
+				Console.WriteLine("\nTEMPO do vertice " +u + " = " + (tempo + 1));
+
 			}
 
 
-	
+
 			cor[u] = preto;
 			this.t[u] = ++tempo;
 			return tempo;
